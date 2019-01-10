@@ -1,0 +1,65 @@
+.rounded-corners{
+    border-radius: 2rem;
+}
+#menuBar{
+    position: fixed; z-index: 99;background-color: rgb(0, 0, 0)
+}
+#currentPage{
+    position:relative;top:5rem
+}
+.cp{
+    max-width: 1200px;
+}
+.nav-item :hover{
+    border-color: black!important;
+}
+a :hover{
+    
+    opacity: 0.5;
+}
+a.text-secondary:hover{
+    cursor: pointer;
+}
+.removeBtn{
+    font-size:12px;
+     padding:0;
+     height:20px;
+     width:20px
+}
+
+.h15{
+    height: 15rem
+}
+.w18{
+    width: 18rem
+}
+.prodToCart img{
+    height: 2rem;
+    width: auto;
+}
+.card-body .prodTitle.card-title{
+    height: 3rem
+}
+.card-body .prodDesc.card-text{
+    overflow: hidden; height: 3rem;
+}
+#productViewDetails .card-img-top.prodImg{
+    width: 18rem;
+    height: auto;
+}
+.card-img-top.prodImg {
+    height: 12rem;
+    width: auto;
+}
+.prodTitle.card-text{
+    display: block; font-weight: bold
+}
+.prodDesc.card-text{
+    max-width: 100%; display: block
+}
+.prodTitle.card-title{
+    height: 2rem
+}
+#productViewDetails .card{
+    margin-left: 4rem;
+}

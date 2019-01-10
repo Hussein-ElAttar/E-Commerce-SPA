@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E-Commerce JS Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+    <body>
+        <template id="menuBarTemplate">
+                <div id="menuBar" class="mb-5 col-12">
+                    <ul class="nav nav-tabs justify-content-center font-weight-bolder border-0">
+                        <li class="nav-item">
+                            <a id="products" class="text-secondary nav-link h-100">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="contact_us" class="text-secondary nav-link h-100">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="about_us" class="text-secondary nav-link h-100 ">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="view_cart" class="text-secondary nav-link h-100 ">View Cart</a>
+                        </li>
+                        <li class="nav-item ml-5">
+                            <p class="text-danger nav-link ml-5">Cart Total Price: <span id="totalPrice"></span> </p>
+                        </li>
+                    </ul>
+                </div>
+        </template>
+        
+        <div class="container-fluid col-12 cp">
+            <div id="currentPage">
+
+            </div>
+        </div>
+
+        <div id="#templates">
+            <template id="productsContainerTemplate">
+                <div class="row">
+                </div>
+            </template>
+
+            <template id="productCardTemplate">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mx-auto mb-3 ">
+                        <div class="card w18">
+                            <a class="viewMore btn"><img src="" class="card-img-top prodImg"alt="..."></a>
+                            <div class="card-body">
+                                <h5 class="prodTitle card-title" ></h5>
+                                <p class="prodDesc card-text"></p>
+                                <p class="prodPrice card-text text-danger d-inline float-left"></p>
+                                <button class="prodToCart btn btn-primary d-inline float-right">Add to cart <img src="./assets/media/cart.png"></button>
+                            </div>
+                        </div>
+                </div>
+            </template>
+
+            <template id="pagination">
+                <nav>
+                    <ul id="paginationUl" class="pagination justify-content-center"></ul>
+                </nav>
+            </template>
+
+            <template id="paginationLi">
+                <li class="page-item text-primary"><a class="page-link">1</a></li>
+            </template>
+
+            <template id="productViewDetailsTemplate" >
+                <div id="productViewDetails"  class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12 mx-auto ">
+                        <img 
+                        src="https://openui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg" 
+                        class="card-img-top prodImg" >
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <p class="prodTitle card-text"></p>
+                        <p class="prodDesc card-text"></p>
+                    </div>
+                    <div class="card col-lg-3 col-md-6 col-sm-6 col-12 mx-auto rounded-corners w18">
+                        <div class="card-body ">
+                            <p class="">Quantity Available:<span style="color:green;height: 10px" class="QAvailable ml-2"></span> <p/>
+                            <p class="">Availability:<span class="Availability ml-2 text-success"></span> <p/>
+                            <p class="">Ordered:<span class="Ordered ml-2 text-primary"></span> <p/>
+                            <hr>
+                            <p class="prodPrice card-text text-danger "></p>
+                            <p>Quantity to order:</p>
+                            <input type="number" min="1" class="form-control prodQuantity" value="1">
+                            <button class="prodToCart btn btn-primary btn-lg btn-block mt-3 rounded-corners">Add to cart <img src="./assets/media/cart.png"></button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template id="viewCartTemplate"">
+                <table id="viewCartTable" class="table table-striped" >
+                    <thead>
+                        <tr>
+                            <th scope="col" width="10%"></th>
+                            <th scope="col" width="20%">Product</th>
+                            <th scope="col" width="10%">Price</th>
+                            <th scope="col" width="10%">Ordered</th>
+                            <th scope="col" width="15%">Add/Remove</th>
+                            <th scope="col" width="10%">Available</th>
+                            <th scope="col" width="15%">Total Price</th>
+                            <th scope="col" width="10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody">
+                        <tr id="tableRow">
+                            <th scope="row" ><a class="viewMore btn"><img src="" class="prodImg card-img-top" style="width:4rem;height: 4rem"></a></th>
+                            <td class="prodTitle"></td>
+                            <td class="prodPrice"></td>
+                            <td class="quantityToBuy"></td>
+                            <td>
+                                <ul class="pagination">
+                                    <li ><button class="page-link addOneToCart">&#43;</button></li>
+                                    <li ><button class="page-link text-danger removeOneFromCart">&#45;</button></li>
+                                </ul>
+                            </td>
+                            <td class="quantityAvailable"></td>
+                            <td class="totalProdPrice"></td>
+                            <td class="removeButton">
+                                <ul class="pagination">
+                                    <li>
+                                        <button class="btn btn-danger">&#x2718;</button> 
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </template>
+            <template id="TotalPriceRow"">
+                    <tr id="tableRow">
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="tableTotalPrice" class="font-weight-bold">Total</td>
+                        <td></td>
+                    </tr>
+            </template>
+
+            <template id="contactUsTemplate">
+                <div id="contactUs">
+                    <div class="form-row justify-content-center">
+                        <div class="form-group col-8">
+                            <h4 for="inputCity">Leave us a message</h4>
+                        </div>
+                    </div>
+                    <div class="progress col-8 mx-auto p-0 mx-auto" style="height: 1px;">
+                        <div class="progress-bar bg-dark" role="progressbar" style="width: 25%;"></div>
+                    </div>
+                    <br>
+                    <form id="myForm" method="POST">
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-4">
+                                <label for="inputCity">Name</label>
+                                <input type="text" name="name" class="form-control rounded-corners">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="inputCity">Email</label>
+                                <input type="text" name="email" class="form-control rounded-corners">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-8 mx-auto">
+                            <label for="inputCity">Subject</label>
+                            <input type="text" name="subject" class="form-control rounded-corners">
+                        </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-8 mx-auto">
+                                <label for="inputCity">Message</label>
+                                <input type="text" name="message" style="height:250px;" class="form-control rounded-corners" id="inputCity">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-8 mx-auto">
+                                <button type="submit" class="btn btn-primary w-100 rounded-corners">Submit</button>
+                            </div>
+                        </div>
+                    </form>  
+                </div>
+            </template >
+
+            <template id="aboutUs">
+                <div class="container-fluid col-8">
+                    <div id="contact-info">
+                        <h1 class="fn">Hussein Mostafa El-Attar</h1>
+                        <hr>
+                        <h3>Personal Info</h3>
+                        <p>
+                            Cell: <span class="tel">+201234567891</span><br />
+                            Email: <a class="email">hussien.elattar1@gmail.com</a>
+                        </p>
+                    </div>
+                    <div id="objective">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                    </div>
+                    <hr>
+                    <dl>
+                        <h3>Education</h3>
+                        <dd>
+                            <dt>Faculty of Engineering, Alexandria University <span class="text-secondary float-right">2013-2017</span></dt>
+                            <p>Mechanical Engineering<br />
+                            <dt>ITI 9-month program - Alexandria <span class="text-secondary  float-right">2018-2019</span></dt>
+                            <p>Open Source application development<br />
+                            <hr>
+                        </dd>
+                        <h3>Skills</h3>
+                        <dd>
+                            <dt>Computer skills</dt>
+                            <p> • C++ • Javascript • NodeJS • Express • ReactJS • Redux • MongoDB
+                                • MYSQL • HTML • CSS • Git • GitHub
+                            </p>
+                            <dt>Language skills</dt>
+                            <p>
+                                <span style="display:block">• Arabic- Native</span>
+                                <span style="display:block">• English - Advanced</span>
+                            </p>
+                        </dd>
+                        <hr>
+                        <h3>Software Projects</h3>
+                        <dd>
+                            <p>
+                                <span style="display:block">• App: <a href="">The standard Lorem Ipsum passage</a> </span>
+                                <span style="display:block">• GitHub: <a href="">Lorem Ipsum is simply dummy text</a></span>
+                            </p>
+                        </dd>
+                        <hr>
+                        <h3>Extracurricular Activities</h3>
+                        <dd>
+                            <dt>The standard Lorem Ipsum passage<span class="text-secondary float-right"> 2016-2017</span></dt>
+                            <p>Lorem Ipsum is simply dummy text<br />
+                            <dt>sed do eiusmod tempor incididunt<span class="text-secondary float-right"> 2016-2017</span></dt>
+                            <p>Excepteur sint occaecat cupidatat non proident<br />
+                            <hr>
+                        </dd>
+                    </dl>
+                </div>
+            </template>
+
+        </div>
+    </body>
+  
+    <script src="./assets/js/handlers/localStorage.js"></script>
+    <script src="./assets/js/handlers/cart.js"></script>
+    <script src="./assets/js/handlers/form.js"></script>
+    <script src="./assets/js/handlers/api.js"></script>
+    <script src="./assets/js/pageLoader.js"></script>
+    <script src="./assets/js/renderer.js"></script>
+    <script src="./assets/js/router.js"></script>
+    <script src="./assets/js/init.js"></script>
+  
+</html>
