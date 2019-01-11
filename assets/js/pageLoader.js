@@ -46,14 +46,5 @@ function loadProductsPage() {
     if (productsData) {
         renderProductCards(productsData.slice(innerBound, outerBound));
         renderProductsPagination(productsData.length, prodPerPage);
-    } else {
-        getDataFromApi()
-            .then((response) => {
-                productsData = response.ProductCollection;
-                renderProductCards(productsData.slice(innerBound, outerBound));
-                sendToLocalStorage("products", productsData);
-            }).catch(() => {
-                console.log("check your api url");
-            })
-    }
+    } 
 }

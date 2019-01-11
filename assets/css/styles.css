@@ -47,6 +47,9 @@ a.text-secondary:hover{
     width: 18rem;
     height: auto;
 }
+.prodToCart.btn.btn-primary.d-inline.float-right img{
+    width:1.25rem;height:auto
+}
 .card-img-top.prodImg {
     height: 12rem;
     width: auto;
