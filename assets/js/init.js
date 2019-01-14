@@ -9,6 +9,8 @@ if(!getFromLocalStorage("products")){
     }).catch(() => {
         console.log("check your api url");
     })
+} else {
+    loadPageBasedOnURL()
 }
 
 updateMenuTotalPrice()
